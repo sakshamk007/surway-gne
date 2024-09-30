@@ -1,36 +1,38 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-
+const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
+const connectDB = require('./db');
 const app = express();
+const cors = require('cors');
+const authRoutes = require('./routes/auth.routes');
+const projectRoutes = require('./routes/project.routes');
+const PORT = process.env.PORT || 5000;
+
+// Load environment variables from .env file
+dotenv.config();
+
+// Enable CORS for all origins
 app.use(cors());
-app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/surway', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
-
-const projectSchema = new mongoose.Schema({
-  name: String,
-  status: String,
-  responses: Number,
-  lastModified: String,
-  creationDate: String,
+// Connect to MongoDB
+connectDB().catch((error) => {
+  console.error('Failed to connect to MongoDB:', error.message);
 });
 
-const Project = mongoose.model('Project', projectSchema);
+// Middleware for parsing request body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/api/projects', async (req, res) => {
-  const projects = await Project.find();
-  res.json(projects);
+// Routes
+app.use('/api/auth', authRoutes); // User-related routes
+app.use('/api/projects', projectRoutes); // Project-related routes
+
+// Default route
+app.get('/', (req, res) => {
+  res.send('Hello World');
 });
 
-app.post('/api/projects', async (req, res) => {
-  const { name, status, responses, lastModified, creationDate } = req.body;
-  const newProject = new Project({ name, status, responses, lastModified, creationDate });
-  await newProject.save();
-  res.json(newProject);
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
-
-const port = 5000;
-app.listen(port, () => console.log(`Server running on port ${port}`));
