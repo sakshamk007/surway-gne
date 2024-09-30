@@ -7,6 +7,9 @@ import Distributions from './pages/Distributions';
 import DataAnalysis from './pages/DataAnalysis';
 import Results from './pages/Results';
 import Reports from './pages/Reports';
+import Signup from './pages/Signup';
+import VerifyUser from './pages/VerifyUser';
+import Login from './pages/Login'; 
 import App from './App.jsx'
 import './index.css'
 
@@ -17,6 +20,18 @@ const router = createBrowserRouter([
     children:[
       {
         path:'/',
+        element:<Signup/>
+      },
+      {
+        path:'/verify-user',
+        element:<VerifyUser/>
+      },
+      {
+        path:'/login',
+        element:<Login/>
+      },
+      {
+        path:'/home',
         element:<Home/>
       },
       {
