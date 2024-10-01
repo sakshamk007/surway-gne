@@ -1,3 +1,6 @@
+// 
+
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -28,7 +31,7 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     margin: '8px',
-                    backgroundColor: '#1976d2', // Example color
+                    backgroundColor: '#a1dac8', // Changed to the new color
                 },
             },
         },
@@ -36,6 +39,10 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     margin: '8px 0',
+                    backgroundColor: '#a1dac8', // Changed to the new color
+                    '&:hover': {
+                        backgroundColor: '#8cbcb1', // Optional: Darken on hover
+                    },
                 },
             },
         },
@@ -110,26 +117,26 @@ function RegisterForm() {
         try {
             // API POST request
             const response = await fetch('http://localhost:8000/api/auth/register', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(userDetails),
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userDetails),
             });
             const json = await response.json();
-      
+
             if (json.success) {
-              toast.success('Successfully registered');
-              setTimeout(() => {
-                navigate('/verify-user', { state: { email: userDetails.email } });
-              }, 2000); // Navigate to VerifyUser page after 2000ms
+                toast.success('Successfully registered');
+                setTimeout(() => {
+                    navigate('/verify-user', { state: { email: userDetails.email } });
+                }, 2000); // Navigate to VerifyUser page after 2000ms
             } else {
-              toast.error(json.message);
+                toast.error(json.message);
             }
-          } catch (error) {
+        } catch (error) {
             toast.error('Registration failed');
-          } finally {
+        } finally {
             setIsSubmitting(false);
-          }
-        };
+        }
+    };
 
     return (
         <ThemeProvider theme={theme}>
@@ -137,7 +144,7 @@ function RegisterForm() {
                 <CssBaseline />
                 <ToastContainer />
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <Avatar sx={{ m: 1, bgcolor: '#a1dac8' }}>
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">Register</Typography>
@@ -209,6 +216,7 @@ function RegisterForm() {
 
                         <Button
                             type="submit"
+                            color='black'
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
@@ -247,13 +255,10 @@ function RegisterForm() {
                         </Typography>
                         <Typography variant="body1">Email: {userDetails.email}</Typography>
                         <Typography variant="body1">Username: {userDetails.username}</Typography>
-                        {/* <Alert sx={{ marginTop: 5 }} severity='info'>
-            This information will be stored for future operations
-          </Alert> */}
                         <hr />
                         <div style={{ display: 'flex', justifyContent: "flex-end", gap: 25, paddingTop: 10 }}>
-                            <Button variant="contained" onClick={() => setShowModal(false)}>Cancel</Button>
-                            <Button variant="contained" onClick={handleSubmit}>Confirm</Button>
+                            <Button variant="contained" color='black' onClick={() => setShowModal(false)}>Cancel</Button>
+                            <Button variant="contained" color='black' onClick={handleSubmit}>Confirm</Button>
                         </div>
                     </Box>
                 </Modal>

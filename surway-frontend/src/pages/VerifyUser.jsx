@@ -16,6 +16,31 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useLocation } from 'react-router-dom';
 
+// Create a theme with custom styles (optional)
+const theme = createTheme({
+    components: {
+        MuiAvatar: {
+            styleOverrides: {
+                root: {
+                    margin: '8px',
+                    backgroundColor: '#a1dac8', // Changed to the new color
+                },
+            },
+        },
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    margin: '8px 0',
+                    backgroundColor: '#a1dac8', // Changed to the new color
+                    '&:hover': {
+                        backgroundColor: '#8cbcb1', // Optional: Darken on hover
+                    },
+                },
+            },
+        },
+    },
+});
+
 
 
 export default function VerifyUser() {
@@ -89,7 +114,7 @@ export default function VerifyUser() {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value });
   };
 
-  const theme = createTheme();
+ 
 
   return (
     <ThemeProvider theme={theme}>
@@ -97,7 +122,7 @@ export default function VerifyUser() {
         <CssBaseline />
         <ToastContainer />
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#a1dac8' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
