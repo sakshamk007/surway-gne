@@ -178,7 +178,7 @@ const Navbar = ({ toggleDarkMode, isDarkMode, projectName }) => {
   return (
     <>
       {/* Navbar AppBar */}
-      <AppBar position="static" sx={{ backgroundColor: '#9D2F07' }}>
+      <AppBar position="static" sx={{ backgroundColor: '#800000' }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           {/* Logo and Menu */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>

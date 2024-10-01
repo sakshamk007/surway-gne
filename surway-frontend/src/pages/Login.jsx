@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+// 
+
+import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "@mui/material/Button";
@@ -12,14 +14,39 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import CircularProgress from "@mui/material/CircularProgress";
-import { createTheme } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
+import Avatar from '@mui/material/Avatar'; // Import Avatar
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'; // Import Icon
 
-
+// Create a theme with custom styles (optional)
+const theme = createTheme({
+    components: {
+        MuiAvatar: {
+            styleOverrides: {
+                root: {
+                    margin: '8px',
+                    backgroundColor: '#a1dac8', // Changed to the new color
+                },
+            },
+        },
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    margin: '8px 0',
+                    backgroundColor: '#a1dac8', // Changed to the new color
+                    '&:hover': {
+                        backgroundColor: '#8cbcb1', // Optional: Darken on hover
+                    },
+                },
+            },
+        },
+    },
+});
 
 function Login() {
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
@@ -27,8 +54,6 @@ function Login() {
   const [errors, setErrors] = useState({ email: "", password: "" });
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
-
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,7 +95,7 @@ function Login() {
         if (json.message === "verify") {
           toast.warning("Please verify your account");
           setTimeout(() => {
-            navigate("/verify-user",);
+            navigate("/verify-user");
           }, 2000);
         } else {
           toast.success("Successfully logged in");
@@ -100,9 +125,8 @@ function Login() {
     }
   };
 
-  const theme = createTheme();
-
   return (
+    <ThemeProvider theme={theme}>
     <Container component="main" maxWidth="xs" style={{ marginBottom: "100px" }}>
       <CssBaseline />
       <ToastContainer />
@@ -112,8 +136,10 @@ function Login() {
           flexDirection: "column",
           alignItems: "center",
           marginTop: 5,
-        }}
-      >
+        }}>
+        <Avatar sx={{ m: 1, bgcolor: '#a1dac8' }}>
+                        <LockOutlinedIcon />
+                    </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
@@ -207,6 +233,7 @@ function Login() {
         </Box>
       </Box>
     </Container>
+    </ThemeProvider>
   );
 }
 
