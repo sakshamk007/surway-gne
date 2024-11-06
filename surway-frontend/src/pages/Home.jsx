@@ -362,7 +362,7 @@ const Home = () => {
           >
             <Typography>{project.name}</Typography>
             <Typography>{project.status}</Typography>
-            <Typography>{project.responses}</Typography>
+            <Typography>{project.responses.length}</Typography>
             <Typography>{project.lastModified}</Typography>
             <Typography>{project.creationDate}</Typography>
             <Button

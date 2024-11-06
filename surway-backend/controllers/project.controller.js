@@ -57,3 +57,75 @@ exports.getProjectById = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Controller to get survey JSON for respondents (without auth)
+exports.getSurveyForRespondent = async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    if (!project) {
+      return res.status(404).json({ message: "Survey not found" });
+    }
+    res.json(project.surveyResults); // Only send survey JSON
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Controller to save survey responses from respondents
+exports.submitSurveyResponse = async (req, res) => {
+  const projectId = req.params.id;
+  const surveyResponse = req.body.responses;
+
+  console.log("Survey response received:", surveyResponse); // Log the received survey response
+
+  if (typeof surveyResponse !== 'object' || surveyResponse === null) {
+      return res.status(400).json({ error: "Invalid survey response format" });
+  }
+
+  try {
+      const project = await Project.findById(projectId);
+      if (!project) {
+          return res.status(404).json({ message: "Survey not found" });
+      }
+
+      // Ensure each response is structured as an object
+      project.responses.push({
+          response: surveyResponse, // This is the survey response data
+          submittedAt: new Date(),
+      });
+
+      await project.save();
+
+      res.status(200).json({ message: "Response submitted successfully" });
+  } catch (error) {
+      console.error("Error saving response:", error);
+      res.status(500).json({ error: "Failed to save response" });
+  }
+};
+
+
+
+
+// Controller to publish survey and generate a shareable link
+exports.publishSurvey = async (req, res) => {
+  const projectId = req.params.id;
+  try {
+    const project = await Project.findById(projectId);
+    if (!project) {
+      return res.status(404).json({ message: "Project not found" });
+    }
+
+    // Generate a unique link for the survey (you could also use a URL slug or token here)
+    const publicLink = `http://localhost:5173/survey/${projectId}`;
+    
+    // Update the project to indicate it's published and save the link
+    project.isPublished = true; // Add an `isPublished` field if not already in schema
+    project.publicLink = publicLink;
+    await project.save();
+
+    res.status(200).json({ message: "Survey published successfully", publicLink });
+  } catch (error) {
+    console.error("Error publishing survey:", error);
+    res.status(500).json({ error: "Failed to publish survey" });
+  }
+};

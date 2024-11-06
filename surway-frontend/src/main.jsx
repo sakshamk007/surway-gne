@@ -11,6 +11,7 @@ import Signup from './pages/Signup';
 import VerifyUser from './pages/VerifyUser';
 import Login from './pages/Login'; 
 import App from './App.jsx'
+import SurveyRespondent from "./pages/SurveyRespondent";
 import './index.css'
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: '/survey-builder/:id',
         element: <SurveyBuilder />
+      },
+      {
+        path: '/survey/:id',
+        element: <SurveyRespondent />
       },
       // {
       //   path: '/survey-builder/:id/distributions',
