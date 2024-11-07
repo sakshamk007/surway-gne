@@ -30,8 +30,8 @@ const projectSchema = new mongoose.Schema({
   responses: [
     {
         response: {
-            type: Map, // or an object schema if you want structure
-            of: String, // or other types as needed
+            // type: Map, // or an object schema if you want structure
+            // of: String, // or other types as needed
         },
         submittedAt: { type: Date, default: Date.now }
     }
