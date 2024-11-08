@@ -9,7 +9,7 @@ router.post('/:id/save-survey', projectController.saveSurveyResults);
 router.get('/:id', projectController.getProjectById);
 router.get('/:id/survey', projectController.getSurveyForRespondent);
 router.post('/:id/survey/submit', projectController.submitSurveyResponse);
-// router.post('/:id/publish', projectController.publishSurvey);
+router.post('/:id/publish', projectController.publishSurvey);
 
 
 module.exports = router;

@@ -142,7 +142,7 @@ const Navbar = ({ toggleDarkMode, isDarkMode, projectName }) => {
     >
       <List>
         {/* My Projects */}
-        <ListItem button component={Link} to="/">
+        <ListItem button component={Link} to="/home">
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <ListItemText primary="My Projects" />
         </ListItem>

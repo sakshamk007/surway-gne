@@ -115,11 +115,14 @@ exports.publishSurvey = async (req, res) => {
       return res.status(404).json({ message: "Project not found" });
     }
 
-    // Generate a unique link for the survey (you could also use a URL slug or token here)
+    // Check if already published
+    if (project.isPublished) {
+      return res.status(200).json({ message: "Survey is already published", publicLink: project.publicLink });
+    }
+
+    // Generate public link
     const publicLink = `http://localhost:5173/survey/${projectId}`;
-    
-    // Update the project to indicate it's published and save the link
-    project.isPublished = true; // Add an `isPublished` field if not already in schema
+    project.isPublished = true;
     project.publicLink = publicLink;
     await project.save();
 
