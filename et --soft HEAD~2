@@ -1,0 +1,99 @@
+[33mcommit 4f3848043553a749d9ffe3d05f6014745f7861b4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: c6a301d 7569f3e
+Author: tavleenkaur100 <tavleenkaur100b@gmail.com>
+Date:   Tue Oct 1 09:24:24 2024 +0530
+
+    Merge branch 'main' of https://github.com/tavleenkaur100/SURWAY-GNE-OG
+
+[33mcommit c6a301dc4d5f088cdd5de95e7655d3097beab342[m
+Author: tavleenkaur100 <tavleenkaur100b@gmail.com>
+Date:   Tue Oct 1 09:19:17 2024 +0530
+
+    Changed colours
+
+[33mcommit 7569f3ed5b36f324501a5c9c846e1b56293a04f7[m
+Author: Simarpreet Kaur <simarpreetkaur052@gmail.com>
+Date:   Mon Sep 30 20:48:12 2024 +0530
+
+    backend done thank god
+
+[33mcommit 13f7289318c725fff493a011f05ce38713c966fd[m
+Merge: 724ea7a 7b913f3
+Author: Simarpreet Kaur <140481464+sim-88@users.noreply.github.com>
+Date:   Mon Sep 30 17:05:34 2024 +0530
+
+    Merge pull request #1 from tavleenkaur100/main
+    
+    Added Auth
+
+[33mcommit 7b913f3f792269d78867aeeb707fbb2766256be3[m
+Author: tavleenkaur100 <tavleenkaur100b@gmail.com>
+Date:   Mon Sep 30 16:54:30 2024 +0530
+
+    modified package.json
+
+[33mcommit e22d4d726e0e0566bb31b4a41844b4f6d6fb79aa[m
+Author: tavleenkaur100 <tavleenkaur100b@gmail.com>
+Date:   Mon Sep 30 16:54:12 2024 +0530
+
+    modified package-lock.json
+
+[33mcommit c1905da0de2cd2b96a5975febc7d936d3920517d[m
+Author: tavleenkaur100 <tavleenkaur100b@gmail.com>
+Date:   Mon Sep 30 16:53:35 2024 +0530
+
+    added frontend auth
+
+[33mcommit 864ff0600672d2d6ac974a023e88a36c5d35c966[m
+Author: tavleenkaur100 <tavleenkaur100b@gmail.com>
+Date:   Mon Sep 30 16:52:28 2024 +0530
+
+    modified package.json
+
+[33mcommit ca1500a0f95473fa1dfe87b85bbd7a3a405c2752[m
+Author: tavleenkaur100 <tavleenkaur100b@gmail.com>
+Date:   Mon Sep 30 16:52:12 2024 +0530
+
+    modified package-lock.json
+
+[33mcommit 1e3ef33641e6ef550d561262b99ded2a29ce80e5[m
+Author: tavleenkaur100 <tavleenkaur100b@gmail.com>
+Date:   Mon Sep 30 16:51:13 2024 +0530
+
+    modified index.js file
+
+[33mcommit 893cae22453ad9569f61cd810910b5563e2c907d[m
+Author: tavleenkaur100 <tavleenkaur100b@gmail.com>
+Date:   Mon Sep 30 16:50:42 2024 +0530
+
+    added db.js file
+
+[33mcommit bd388a642473cdad6ef18197dc092e2f16c0e78a[m
+Author: tavleenkaur100 <tavleenkaur100b@gmail.com>
+Date:   Mon Sep 30 16:50:04 2024 +0530
+
+    added routes folder
+
+[33mcommit aed5a6e856ba9e2fc2bf4c3eae00e5b210bf8bac[m
+Author: tavleenkaur100 <tavleenkaur100b@gmail.com>
+Date:   Mon Sep 30 16:49:43 2024 +0530
+
+    added models folder
+
+[33mcommit b2c4f491b9dc981b729cdf172e6f5217ac9e066d[m
+Author: tavleenkaur100 <tavleenkaur100b@gmail.com>
+Date:   Mon Sep 30 16:49:19 2024 +0530
+
+    added helpers folder
+
+[33mcommit 25d62ac4d3050abe1635ae71dc983ec66425bd98[m
+Author: tavleenkaur100 <tavleenkaur100b@gmail.com>
+Date:   Mon Sep 30 16:48:47 2024 +0530
+
+    added controllers folder
+
+[33mcommit 724ea7ad1c1e5ae214817ca85285e6c88c619308[m
+Author: Simarpreet Kaur <simarpreetkaur052@gmail.com>
+Date:   Mon Sep 30 11:26:15 2024 +0530
+
+    colrs changed, SurveyJS

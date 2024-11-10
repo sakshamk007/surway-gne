@@ -12,7 +12,7 @@ const SurveyRespondent = () => {
     // Fetch the survey JSON for this respondent
     const fetchSurvey = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/projects/${id}/survey`);
+        const response = await axios.get(`https://surway-backend.onrender.com/api/projects/${id}/survey`);
         setSurveyJSON(response.data);
       } catch (err) {
         console.error("Failed to load survey", err);
@@ -29,7 +29,7 @@ const SurveyRespondent = () => {
             console.error("Survey response data is invalid:", responseData);
             return;
         }
-        await axios.post(`http://localhost:8000/api/projects/${id}/survey/submit`, {
+        await axios.post(`https://surway-backend.onrender.com/api/projects/${id}/survey/submit`, {
             responses: responseData,
         });
         alert("Thank you for completing the survey!");
