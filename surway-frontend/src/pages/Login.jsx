@@ -216,7 +216,7 @@ function Login() {
             </Grid>
             <Grid item>
               <Link
-                href="/signup"
+                href="/home"
                 variant="body2"
                 sx={{
                   color: "#1b29c2",
