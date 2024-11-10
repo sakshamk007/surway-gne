@@ -121,7 +121,7 @@ exports.publishSurvey = async (req, res) => {
     }
 
     // Generate public link
-    const publicLink = `http://localhost:5173/survey/${projectId}`;
+    const publicLink = `https://surway-gne.onrender.com/survey/${projectId}`;
     project.isPublished = true;
     project.publicLink = publicLink;
     await project.save();
