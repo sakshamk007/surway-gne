@@ -17,7 +17,7 @@ const SurveyBuilder = () => {
   useEffect(() => {
     const fetchSurveyData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/projects/${id}`);
+        const response = await axios.get(`https://surway-backend.onrender.com/api/projects/${id}`);
         const project = response.data;
         const surveyData = project.surveyResults;
         initializeSurveyCreator(surveyData);
@@ -49,7 +49,7 @@ const SurveyBuilder = () => {
 
   const saveSurveyToDB = async (surveyJSON) => {
     try {
-      await axios.post(`http://localhost:8000/api/projects/${id}/save-survey`, { surveyJSON });
+      await axios.post(`https://surway-backend.onrender.com/api/projects/${id}/save-survey`, { surveyJSON });
       console.log("Survey JSON saved successfully");
     } catch (err) {
       console.error("Failed to save survey", err);
@@ -58,7 +58,7 @@ const SurveyBuilder = () => {
 
   const handlePublish = async () => {
     try {
-      const response = await axios.post(`http://localhost:8000/api/projects/${id}/publish`);
+      const response = await axios.post(`https://surway-backend.onrender.com/api/projects/${id}/publish`);
       setPublicLink(response.data.publicLink);
       setOpen(true);
     } catch (err) {
