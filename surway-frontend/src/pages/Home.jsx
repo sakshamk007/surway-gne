@@ -35,7 +35,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const response = await axios.get('https://surway-backend.onrender.com/api/projects');
+      const response = await axios.get('http://localhost:8000/api/projects');
       setProjects(response.data);
     };
     fetchProjects();
@@ -52,7 +52,7 @@ const Home = () => {
       lastModified: new Date().toISOString().split('T')[0],
       creationDate: new Date().toISOString().split('T')[0],
     };
-    const response = await axios.post('https://surway-backend.onrender.com/api/projects', newProjectObj);
+    const response = await axios.post('http://localhost:8000/api/projects', newProjectObj);
     setProjects([...projects, response.data]);
     handleCloseModal();
   };

@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import App from './App.jsx'
 import SurveyRespondent from "./pages/SurveyRespondent";
 import './index.css'
+import ScrollableTabs from "./components/ScrollableTabs.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,28 +44,28 @@ const router = createBrowserRouter([
         path: '/survey/:id',
         element: <SurveyRespondent />
       },
-      // {
-      //   path: '/survey-builder/:id/distributions',
-      //   element: <Distributions />,
-      // },
-      // {
-      //   path: '/survey-builder/:id/data-analysis',
-      //   element: <DataAnalysis />,
-      // },
-      // {
-      //   path: '/survey-builder/:id/results',
-      //   element: <Results />,
-      // },
-      // {
-      //   path: '/survey-builder/:id/reports',
-      //   element: <Reports />,
-      // },
+      {
+        path: '/survey-builder/:id/distributions',
+        element: <Distributions />,
+      },
+      {
+        path: '/survey-builder/:id/data-analysis',
+        element: <DataAnalysis />,
+      },
+      {
+        path: '/survey-builder/:id/results',
+        element: <Results />,
+      },
+      {
+        path: '/survey-builder/:id/reports',
+        element: <Reports />,
+      },
     ]
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
+  // </React.StrictMode>
 );

@@ -1,5 +1,33 @@
 const Project = require('../models/project.model');
 
+// Controller to get responses for a project
+exports.getResponses = async (req, res) => {
+  try{
+    const responses = await Project.findById(req.params.id).select('responses');
+    if(!responses){
+      return res.status(404).json({message: "Results not found"});
+    }
+    res.json(responses.responses);
+  
+  }catch(error){
+    res.status(500).json({message: error.message});
+  }
+};     
+
+// Controller to get surveyResults for a project
+exports.getsurveyResults = async (req, res) => {
+  try{
+    const results = await Project.findById(req.params.id).select('surveyResults');
+    if(!results){
+      return res.status(404).json({message: "Results not found"});
+    }
+    res.json(results.surveyResults);
+  
+  }catch(error){
+    res.status(500).json({message: error.message});
+  }
+};     
+
 // Controller to get all projects
 exports.getAllProjects = async (req, res) => {
   try {
@@ -121,7 +149,7 @@ exports.publishSurvey = async (req, res) => {
     }
 
     // Generate public link
-    const publicLink = `https://surway-gne.onrender.com/survey/${projectId}`;
+    const publicLink = `http://localhost:5173/survey/${projectId}`;
     project.isPublished = true;
     project.publicLink = publicLink;
     await project.save();

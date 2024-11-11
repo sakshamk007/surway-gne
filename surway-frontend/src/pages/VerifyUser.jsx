@@ -59,7 +59,7 @@ export default function VerifyUser() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`https://surway-backend.onrender.com/api/auth/sendotp`, {
+      const response = await fetch(`http://localhost:8000/api/auth/sendotp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: userDetails.email }),
@@ -86,7 +86,7 @@ export default function VerifyUser() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`https://surway-backend.onrender.com/api/auth/verifyotp`, {
+      const response = await fetch(`http://localhost:8000/api/auth/verifyotp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify( userDetails ),

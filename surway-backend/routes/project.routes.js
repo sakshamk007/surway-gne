@@ -10,6 +10,8 @@ router.get('/:id', projectController.getProjectById);
 router.get('/:id/survey', projectController.getSurveyForRespondent);
 router.post('/:id/survey/submit', projectController.submitSurveyResponse);
 router.post('/:id/publish', projectController.publishSurvey);
+router.get('/:id/survey-responses', projectController.getResponses);
+router.get('/:id/survey-results', projectController.getsurveyResults);
 
 
 module.exports = router;

@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy"; // For copy icon
 import "survey-core/defaultV2.css";
 import "survey-creator-core/survey-creator-core.css";
+import ScrollableTabs from "../components/ScrollableTabs";
 
 const SurveyBuilder = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const SurveyBuilder = () => {
   useEffect(() => {
     const fetchSurveyData = async () => {
       try {
-        const response = await axios.get(`https://surway-backend.onrender.com/api/projects/${id}`);
+        const response = await axios.get(`http://localhost:8000/api/projects/${id}`);
         const project = response.data;
         const surveyData = project.surveyResults;
         initializeSurveyCreator(surveyData);
@@ -48,7 +49,7 @@ const SurveyBuilder = () => {
 
   const saveSurveyToDB = async (surveyJSON) => {
     try {
-      await axios.post(`https://surway-backend.onrender.com/api/projects/${id}/save-survey`, { surveyJSON });
+      await axios.post(`http://localhost:8000/api/projects/${id}/save-survey`, { surveyJSON });
       console.log("Survey JSON saved successfully");
     } catch (err) {
       console.error("Failed to save survey", err);
@@ -57,7 +58,7 @@ const SurveyBuilder = () => {
 
   const handlePublish = async () => {
     try {
-      const response = await axios.post(`https://surway-backend.onrender.com/api/projects/${id}/publish`);
+      const response = await axios.post(`http://localhost:8000/api/projects/${id}/publish`);
       setPublicLink(response.data.publicLink);
       setOpen(true);
     } catch (err) {
@@ -74,29 +75,21 @@ const SurveyBuilder = () => {
   return (
     <>
       {/* Navbar-like container */}
-      <Box
+      <ScrollableTabs />
+      <Button
+        onClick={handlePublish}
+        variant="contained"
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          backgroundColor: "#f8f9fa", // Light background
-          padding: "16px 24px",
-          borderBottom: "1px solid #ddd",
+          position: "absolute",
+          right: 20,
+          top: 120,
+          backgroundColor: "#a1dac8",
+          color: "#fff",
+          ":hover": { backgroundColor: "#86c0b1" },
         }}
       >
-        <Typography variant="h6">Survey Builder</Typography>
-        <Button
-          onClick={handlePublish}
-          variant="contained"
-          sx={{
-            backgroundColor: "#a1dac8",
-            color: "#fff",
-            ":hover": { backgroundColor: "#86c0b1" },
-          }}
-        >
-          PUBLISH
-        </Button>
-      </Box>
+        PUBLISH
+      </Button>
 
       {/* Main content */}
       <Box
