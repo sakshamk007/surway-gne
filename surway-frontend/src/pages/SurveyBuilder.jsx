@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy"; // For copy icon
 import "survey-core/defaultV2.css";
 import "survey-creator-core/survey-creator-core.css";
+import ScrollableTabs from "../components/ScrollableTabs";
 
 const SurveyBuilder = () => {
   const { id } = useParams();
@@ -74,29 +75,21 @@ const SurveyBuilder = () => {
   return (
     <>
       {/* Navbar-like container */}
-      <Box
+      <ScrollableTabs />
+      <Button
+        onClick={handlePublish}
+        variant="contained"
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          backgroundColor: "#f8f9fa", // Light background
-          padding: "16px 24px",
-          borderBottom: "1px solid #ddd",
+          position: "absolute",
+          right: 20,
+          top: 120,
+          backgroundColor: "#a1dac8",
+          color: "#fff",
+          ":hover": { backgroundColor: "#86c0b1" },
         }}
       >
-        <Typography variant="h6">Survey Builder</Typography>
-        <Button
-          onClick={handlePublish}
-          variant="contained"
-          sx={{
-            backgroundColor: "#a1dac8",
-            color: "#fff",
-            ":hover": { backgroundColor: "#86c0b1" },
-          }}
-        >
-          PUBLISH
-        </Button>
-      </Box>
+        PUBLISH
+      </Button>
 
       {/* Main content */}
       <Box
