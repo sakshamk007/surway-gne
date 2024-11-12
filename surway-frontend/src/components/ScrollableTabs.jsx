@@ -22,17 +22,17 @@ const ScrollableTabs = () => {
         navigate(`/survey-builder/${id}`);
         break;
       case 1:
-        navigate(`/survey-builder/${id}/distributions`);
-        break;
-      case 2:
-        navigate(`/survey-builder/${id}/data-analysis`);
-        break;
-      case 3:
         navigate(`/survey-builder/${id}/results`);
         break;
-      case 4:
-        navigate(`/survey-builder/${id}/reports`);
-        break;
+      // case 2:
+      //   navigate(`/survey-builder/${id}/data-analysis`);
+      //   break;
+      // case 3:
+      //   navigate(`/survey-builder/${id}/distributions`);
+      //   break;
+      // case 4:
+      //   navigate(`/survey-builder/${id}/reports`);
+      //   break;
       default:
         navigate(`/survey-builder/${id}`);
     }
@@ -56,10 +56,10 @@ const ScrollableTabs = () => {
           aria-label="scrollable auto tabs example"
         >
           <Tab label="Survey" />
-          <Tab label="Distributions" />
-          <Tab label="Data and Analysis" />
+          {/* <Tab label="Distributions" /> */}
+          {/* <Tab label="Data and Analysis" /> */}
           <Tab label="Results" />
-          <Tab label="Reports" />
+          {/* <Tab label="Reports" /> */}
         </Tabs>
       </AppBar>
     </Box>
