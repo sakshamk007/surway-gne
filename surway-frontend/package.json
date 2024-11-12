@@ -21,8 +21,6 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
     "react-toastify": "^10.0.5",
-    "recharts": "^2.13.3",
-    "survey-analytics": "^1.12.9",
     "survey-core": "^1.12.3",
     "survey-creator-react": "^1.12.3",
     "survey-react": "^1.12.8"
