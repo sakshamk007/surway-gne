@@ -56,6 +56,24 @@ exports.createProject = async (req, res) => {
   }
 };
 
+exports.deleteProject = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedProject = await Project.findByIdAndDelete(id);
+
+    if (!deletedProject) {
+      console.log(`No project found with ID: ${id}`);
+      return res.status(404).json({ message: 'Project not found' });
+    }
+
+    console.log(`Project deleted with ID: ${id}`);
+    res.status(200).json({ message: 'Project deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting project:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 
 exports.saveSurveyResults = async (req, res) => {
   
@@ -85,6 +103,7 @@ exports.getProjectById = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 // Controller to get survey JSON for respondents (without auth)
 exports.getSurveyForRespondent = async (req, res) => {

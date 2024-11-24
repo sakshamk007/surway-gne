@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AppBar, Tabs, Tab, Toolbar, Typography, Box } from '@mui/material';
+import { AppBar, Tabs, Tab, Box } from '@mui/material';
 
 const ScrollableTabs = () => {
   const { id } = useParams();  // Get project ID from the URL
@@ -8,10 +8,11 @@ const ScrollableTabs = () => {
   const [activeTab, setActiveTab] = React.useState(() => {
     // Initialize tab state based on the current path
     const path = window.location.pathname;
-    if (path.includes('/distributions')) return 1;
-    if (path.includes('/data-analysis')) return 2;
-    if (path.includes('/results')) return 3;
-    if (path.includes('/reports')) return 4;
+    // if (path.includes('/distributions')) return 1;
+    // if (path.includes('/data-analysis')) return 2;
+    // if (path.includes('/results')) return 3;
+    // if (path.includes('/reports')) return 4;
+    if (path.includes('/results')) return 1;
     return 0; // Default to Survey
   });
 

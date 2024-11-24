@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Typography, Button, Modal, TextField, MenuItem } from '@mui/material';
+import { Box, Typography, Button, Modal, TextField, MenuItem, IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 
@@ -63,6 +64,17 @@ const Home = () => {
     return matchesSearch && matchesFilter;
   });
 
+  const handleDeleteProject = async (id) => {
+    if (window.confirm('Are you sure you want to delete this project?')) {
+      try {
+        await axios.delete(`https://surway-backend.onrender.com/api/projects/${id}`);
+        setProjects((prevProjects) => prevProjects.filter((project) => project._id !== id));
+      } catch (error) {
+        console.error('Error deleting project:', error);
+      }
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ p: { xs: 2, sm: 3, md: 4 } }}>
@@ -113,7 +125,7 @@ const Home = () => {
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: '4fr 1fr 1fr 1fr 1fr 1fr auto',
+            gridTemplateColumns: '2fr 1fr 1fr 2fr 2fr 1fr auto', // Adjusted column widths
             gap: 1,
             p: 1,
             bgcolor: 'primary.main',
@@ -122,12 +134,13 @@ const Home = () => {
             alignItems: 'center',
           }}
         >
-          <Typography sx={{ color: 'black', fontWeight: 'bold' }}>Project Name</Typography>
-          <Typography sx={{ color: 'black', fontWeight: 'bold' }}>Status</Typography>
-          <Typography sx={{ color: 'black', fontWeight: 'bold' }}>Responses</Typography>
-          <Typography sx={{ color: 'black', fontWeight: 'bold' }}>Last Modified</Typography>
-          <Typography sx={{ color: 'black', fontWeight: 'bold' }}>Creation Date</Typography>
-          <Typography sx={{ color: 'black', fontWeight: 'bold' }}></Typography>
+          <Typography sx={{ color: 'black', fontWeight: 'bold', textAlign: 'center' }}>Project Name</Typography>
+          <Typography sx={{ color: 'black', fontWeight: 'bold', textAlign: 'center' }}>Status</Typography>
+          <Typography sx={{ color: 'black', fontWeight: 'bold', textAlign: 'center' }}>Responses</Typography>
+          <Typography sx={{ color: 'black', fontWeight: 'bold', textAlign: 'center' }}>Last Modified</Typography>
+          <Typography sx={{ color: 'black', fontWeight: 'bold', textAlign: 'center' }}>Creation Date</Typography>
+          <Typography sx={{ color: 'black', fontWeight: 'bold', textAlign: 'center' }}>Actions</Typography>
+          <Typography sx={{ color: 'black', fontWeight: 'bold', textAlign: 'center' }}></Typography>
         </Box>
 
         {filteredProjects.map((project) => (
@@ -135,7 +148,7 @@ const Home = () => {
             key={project.id}
             sx={{
               display: 'grid',
-              gridTemplateColumns: '4fr 1fr 1fr 1fr 1fr 1fr auto',
+              gridTemplateColumns: '2fr 1fr 1fr 2fr 2fr 1fr auto',
               gap: 1,
               alignItems: 'center',
               bgcolor: 'grey.200',
@@ -143,21 +156,39 @@ const Home = () => {
               minHeight: '50px',
             }}
           >
-            <Typography>{project.name}</Typography>
-            <Typography>{project.status}</Typography>
-            <Typography>{project.responses.length}</Typography>
-            <Typography>{project.lastModified}</Typography>
-            <Typography>{project.creationDate}</Typography>
+            <Typography sx={{ textAlign: 'center' }}>{project.name}</Typography>
+            <Typography sx={{ textAlign: 'center' }}>{project.status}</Typography>
+            <Typography sx={{ textAlign: 'center' }}>{project.responses.length}</Typography>
+            <Typography sx={{ textAlign: 'center' }}>{project.lastModified}</Typography>
+            <Typography sx={{ textAlign: 'center' }}>{project.creationDate}</Typography>
+
             <Button
               component={Link}
               to={`/survey-builder/${project._id}`}
               state={{ projectName: project.name }}
               variant="contained"
               color="primary"
-              sx={{ height: '30px', width: 'fit-content' }}
+              sx={{
+                height: '30px',
+                px: 2,
+                fontSize: '0.85rem',
+                textAlign: 'center',
+              }}
             >
               Open Project
             </Button>
+            <IconButton
+              sx={{
+                bgcolor: '#a1dac8',
+                color: 'white',
+                '&:hover': {
+                  bgcolor: '#8ccab3',
+                },
+              }}
+              onClick={() => handleDeleteProject(project._id)}
+            >
+              <DeleteIcon />
+            </IconButton>
           </Box>
         ))}
 
